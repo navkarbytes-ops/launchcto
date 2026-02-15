@@ -4,13 +4,13 @@ import Link from "next/link";
 
 export default function LandingPage() {
   return (
-    <div className="bg-[#f4f7fb] text-neutral-900">
+    <div className="bg-[#f4f7fb] text-neutral-900 relative overflow-hidden">
 
       <BackgroundGlow />
 
       <Header />
 
-      <main className="space-y-32 pb-32">
+      <main className="space-y-40 pb-40">
 
         <Hero />
 
@@ -38,8 +38,9 @@ export default function LandingPage() {
 function BackgroundGlow() {
   return (
     <>
-      <div className="fixed -top-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
-      <div className="fixed top-1/3 -right-40 w-[500px] h-[500px] bg-violet-500/10 blur-3xl rounded-full pointer-events-none" />
+      <div className="fixed -top-40 -left-40 w-[600px] h-[600px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="fixed top-1/3 -right-40 w-[600px] h-[600px] bg-violet-500/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="fixed bottom-0 left-1/3 w-[500px] h-[500px] bg-indigo-400/10 blur-[120px] rounded-full pointer-events-none" />
     </>
   );
 }
@@ -48,15 +49,15 @@ function BackgroundGlow() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/50">
+    <header className="sticky top-0 z-50 backdrop-blur-2xl bg-white/60 border-b border-white/40">
       <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
         <div className="text-lg font-semibold tracking-tight">
           LaunchCTO
         </div>
 
         <Link
-          href="/login"
-          className="text-sm font-medium text-neutral-700 hover:text-black"
+          href="/auth/login"
+          className="text-sm font-medium text-neutral-700 hover:text-black transition"
         >
           Start Execution
         </Link>
@@ -69,31 +70,31 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="pt-28 px-6 text-center max-w-5xl mx-auto">
+    <section className="pt-32 px-6 text-center max-w-5xl mx-auto">
       <h1 className="text-5xl md:text-6xl font-semibold leading-tight tracking-tight">
         Founders Don’t Fail From Lack of Effort.
         <br />
-        <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
           They Fail From Lack of Execution Structure.
         </span>
       </h1>
 
-      <p className="mt-8 text-lg text-neutral-600 max-w-3xl mx-auto">
+      <p className="mt-8 text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
         LaunchCTO installs a structured execution system — architecture,
         sequencing, and capital discipline — before you scale team or burn rate.
       </p>
 
-      <div className="mt-12 flex justify-center gap-6">
+      <div className="mt-14 flex justify-center gap-6 flex-wrap">
         <Link
-          href="/login"
-          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-full shadow-lg hover:opacity-90 transition"
+          href="/auth/login"
+          className="px-10 py-4 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-full shadow-lg hover:opacity-90 transition-all"
         >
           Install Structured Execution →
         </Link>
 
         <a
           href="#framework"
-          className="px-8 py-4 bg-white border border-neutral-300 rounded-full text-neutral-700 hover:border-neutral-500 transition"
+          className="px-10 py-4 bg-white/80 backdrop-blur border border-neutral-300 rounded-full text-neutral-700 hover:border-neutral-500 transition"
         >
           See The Framework
         </a>
@@ -111,7 +112,7 @@ function StructuralProblem() {
         The Hidden Cost of Unstructured Execution
       </h2>
 
-      <div className="mt-14 grid md:grid-cols-3 gap-8">
+      <div className="mt-16 grid md:grid-cols-3 gap-10">
         {[
           {
             title: "Architecture After Hiring",
@@ -128,15 +129,15 @@ function StructuralProblem() {
         ].map((item, i) => (
           <div
             key={i}
-            className="p-8 bg-white rounded-3xl shadow-sm border border-neutral-200"
+            className="p-10 bg-white/90 backdrop-blur rounded-3xl shadow-md border border-neutral-200 hover:shadow-xl transition"
           >
             <h3 className="font-semibold text-lg">{item.title}</h3>
-            <p className="mt-4 text-neutral-600">{item.desc}</p>
+            <p className="mt-4 text-neutral-600 leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
 
-      <p className="mt-12 text-center text-neutral-600 text-lg">
+      <p className="mt-14 text-center text-neutral-600 text-lg">
         Execution without structure compounds risk exponentially.
       </p>
     </section>
@@ -149,13 +150,13 @@ function ExecutionSystem() {
   return (
     <section
       id="framework"
-      className="px-6 max-w-6xl mx-auto bg-white/80 backdrop-blur-xl rounded-3xl p-16 border border-neutral-200 shadow-lg"
+      className="px-6 max-w-6xl mx-auto bg-white/80 backdrop-blur-2xl rounded-3xl p-20 border border-neutral-200 shadow-xl"
     >
       <h2 className="text-3xl font-semibold text-center">
         The LaunchCTO Execution Control System
       </h2>
 
-      <div className="mt-14 grid md:grid-cols-2 gap-12">
+      <div className="mt-16 grid md:grid-cols-2 gap-14">
         {[
           {
             title: "Market Clarity Architecture",
@@ -176,7 +177,7 @@ function ExecutionSystem() {
         ].map((item, i) => (
           <div key={i}>
             <h3 className="font-semibold text-xl">{item.title}</h3>
-            <p className="mt-3 text-neutral-600">{item.desc}</p>
+            <p className="mt-4 text-neutral-600 leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -193,7 +194,7 @@ function Deliverables() {
         What You Walk Away With
       </h2>
 
-      <div className="mt-12 grid md:grid-cols-2 gap-8">
+      <div className="mt-14 grid md:grid-cols-2 gap-10">
         {[
           "Product Architecture Diagram",
           "Execution Roadmap (Sprint Sequenced)",
@@ -203,7 +204,7 @@ function Deliverables() {
         ].map((item, i) => (
           <div
             key={i}
-            className="p-6 bg-white rounded-2xl border border-neutral-200 shadow-sm"
+            className="p-8 bg-white/90 backdrop-blur rounded-2xl border border-neutral-200 shadow-sm hover:shadow-lg transition"
           >
             {item}
           </div>
@@ -222,7 +223,7 @@ function InstallationModel() {
         Install Execution Structure In 14 Days
       </h2>
 
-      <div className="mt-14 space-y-6">
+      <div className="mt-16 space-y-6">
         {[
           "Day 1–2 → Founder Intake",
           "Day 3–5 → System Blueprint",
@@ -231,7 +232,7 @@ function InstallationModel() {
         ].map((step, i) => (
           <div
             key={i}
-            className="p-6 bg-gradient-to-r from-blue-50 to-violet-50 rounded-2xl border border-neutral-200"
+            className="p-6 bg-gradient-to-r from-blue-50 via-indigo-50 to-violet-50 rounded-2xl border border-neutral-200"
           >
             {step}
           </div>
@@ -250,7 +251,7 @@ function Qualification() {
         This Is For Founders Who
       </h2>
 
-      <div className="mt-12 grid md:grid-cols-2 gap-10">
+      <div className="mt-14 grid md:grid-cols-2 gap-14">
         <div>
           <ul className="space-y-4 text-neutral-700">
             <li>• Are preparing to raise capital</li>
@@ -277,7 +278,7 @@ function Qualification() {
 function FinalCTA() {
   return (
     <section className="px-6 text-center">
-      <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-3xl p-16 shadow-xl">
+      <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 text-white rounded-3xl p-20 shadow-2xl">
         <h2 className="text-3xl font-semibold">
           Ready To Replace Burn With Structure?
         </h2>
@@ -287,8 +288,8 @@ function FinalCTA() {
         </p>
 
         <Link
-          href="/login"
-          className="mt-10 inline-block px-8 py-4 bg-white text-black rounded-full font-medium"
+          href="/auth/login"
+          className="mt-12 inline-block px-10 py-4 bg-white text-black rounded-full font-medium shadow-md hover:shadow-xl transition"
         >
           Start Structured Execution →
         </Link>
@@ -301,7 +302,7 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="py-16 text-center text-neutral-500 text-sm">
+    <footer className="py-20 text-center text-neutral-500 text-sm">
       © {new Date().getFullYear()} LaunchCTO · Structured Execution Partner
     </footer>
   );
