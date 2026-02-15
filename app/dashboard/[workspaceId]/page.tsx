@@ -10,9 +10,9 @@ export default async function WorkspacePage({
 
   const supabase = await createSupabaseServer();
 
-  /* ========================
-     Get Authenticated User
-  ======================== */
+  /* =========================
+     Authenticated User
+  ========================== */
 
   const {
     data: { user },
@@ -26,11 +26,9 @@ export default async function WorkspacePage({
     );
   }
 
-  /* ========================
-     Fetch Profile
-  ======================== */
-
-  let fullName = "";
+  /* =========================
+     Profile
+  ========================== */
 
   const { data: profile } = await supabase
     .from("profiles")
@@ -38,11 +36,11 @@ export default async function WorkspacePage({
     .eq("id", user.id)
     .single();
 
-  fullName = profile?.full_name ?? "";
+  const fullName = profile?.full_name ?? "";
 
-  /* ========================
-     Fetch Workspace
-  ======================== */
+  /* =========================
+     Workspace
+  ========================== */
 
   const { data: workspace } = await supabase
     .from("workspaces")
@@ -50,9 +48,9 @@ export default async function WorkspacePage({
     .eq("id", workspaceId)
     .single();
 
-  /* ========================
-     Fetch ALL Applications
-  ======================== */
+  /* =========================
+     Applications (ALL)
+  ========================== */
 
   const { data: applications } = await supabase
     .from("applications")
@@ -60,9 +58,19 @@ export default async function WorkspacePage({
     .eq("workspace_id", workspaceId)
     .order("created_at", { ascending: false });
 
-  /* ========================
+  /* =========================
+     Calendly URL (CORRECT PREFILL)
+  ========================== */
+
+  const calendlyUrl = `https://calendly.com/navkarbytes/30min?name=${encodeURIComponent(
+    fullName || user.email || ""
+  )}&email=${encodeURIComponent(
+    user.email || ""
+  )}&a1=${encodeURIComponent(workspaceId)}`;
+
+  /* =========================
      Render
-  ======================== */
+  ========================== */
 
   return (
     <div className="min-h-screen bg-[#f4f7fb] p-10">
@@ -85,12 +93,13 @@ export default async function WorkspacePage({
           </div>
         </div>
 
-        {/* Applications Section */}
+        {/* If No Applications */}
         {!applications || applications.length === 0 ? (
           <div className="bg-white p-10 rounded-3xl border border-neutral-200 text-center">
             <h2 className="text-xl font-semibold">
               Founder Intake Required
             </h2>
+
             <p className="mt-4 text-neutral-600">
               Install execution clarity before proceeding.
             </p>
@@ -106,6 +115,7 @@ export default async function WorkspacePage({
           <>
             {/* Ideas List */}
             <div className="bg-white p-10 rounded-3xl border border-neutral-200 space-y-8">
+
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-semibold">
                   Founder Ideas
@@ -137,6 +147,7 @@ export default async function WorkspacePage({
                   </p>
                 </div>
               ))}
+
             </div>
 
             {/* Strategy Call */}
@@ -150,11 +161,7 @@ export default async function WorkspacePage({
               </p>
 
               <a
-                href={`https://calendly.com/navkarbytes/30min?name=${encodeURIComponent(
-                  fullName || user.email || ""
-                )}&email=${encodeURIComponent(
-                  user.email || ""
-                )}&workspace_id=${workspaceId}`}
+                href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-xl"
@@ -169,9 +176,9 @@ export default async function WorkspacePage({
   );
 }
 
-/* ========================
-   Stage Badge Component
-======================== */
+/* =========================
+   Stage Badge
+========================= */
 
 function StageBadge({ stage }: { stage: string }) {
   return (
