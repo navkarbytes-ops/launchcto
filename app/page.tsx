@@ -1,65 +1,308 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+
+export default function LandingPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="bg-[#f4f7fb] text-neutral-900">
+
+      <BackgroundGlow />
+
+      <Header />
+
+      <main className="space-y-32 pb-32">
+
+        <Hero />
+
+        <StructuralProblem />
+
+        <ExecutionSystem />
+
+        <Deliverables />
+
+        <InstallationModel />
+
+        <Qualification />
+
+        <FinalCTA />
+
       </main>
+
+      <Footer />
     </div>
+  );
+}
+
+/* ===================== Background ===================== */
+
+function BackgroundGlow() {
+  return (
+    <>
+      <div className="fixed -top-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
+      <div className="fixed top-1/3 -right-40 w-[500px] h-[500px] bg-violet-500/10 blur-3xl rounded-full pointer-events-none" />
+    </>
+  );
+}
+
+/* ===================== Header ===================== */
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/50">
+      <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div className="text-lg font-semibold tracking-tight">
+          LaunchCTO
+        </div>
+
+        <Link
+          href="/login"
+          className="text-sm font-medium text-neutral-700 hover:text-black"
+        >
+          Start Execution
+        </Link>
+      </div>
+    </header>
+  );
+}
+
+/* ===================== Hero ===================== */
+
+function Hero() {
+  return (
+    <section className="pt-28 px-6 text-center max-w-5xl mx-auto">
+      <h1 className="text-5xl md:text-6xl font-semibold leading-tight tracking-tight">
+        Founders Don’t Fail From Lack of Effort.
+        <br />
+        <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+          They Fail From Lack of Execution Structure.
+        </span>
+      </h1>
+
+      <p className="mt-8 text-lg text-neutral-600 max-w-3xl mx-auto">
+        LaunchCTO installs a structured execution system — architecture,
+        sequencing, and capital discipline — before you scale team or burn rate.
+      </p>
+
+      <div className="mt-12 flex justify-center gap-6">
+        <Link
+          href="/login"
+          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-full shadow-lg hover:opacity-90 transition"
+        >
+          Install Structured Execution →
+        </Link>
+
+        <a
+          href="#framework"
+          className="px-8 py-4 bg-white border border-neutral-300 rounded-full text-neutral-700 hover:border-neutral-500 transition"
+        >
+          See The Framework
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* ===================== Structural Problem ===================== */
+
+function StructuralProblem() {
+  return (
+    <section className="px-6 max-w-6xl mx-auto">
+      <h2 className="text-3xl font-semibold text-center">
+        The Hidden Cost of Unstructured Execution
+      </h2>
+
+      <div className="mt-14 grid md:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Architecture After Hiring",
+            desc: "Engineers hired before system boundaries are defined.",
+          },
+          {
+            title: "Roadmaps Without Validation",
+            desc: "Features ship. Market clarity doesn’t.",
+          },
+          {
+            title: "Burn Without Control",
+            desc: "Capital disappears in iteration loops.",
+          },
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="p-8 bg-white rounded-3xl shadow-sm border border-neutral-200"
+          >
+            <h3 className="font-semibold text-lg">{item.title}</h3>
+            <p className="mt-4 text-neutral-600">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-12 text-center text-neutral-600 text-lg">
+        Execution without structure compounds risk exponentially.
+      </p>
+    </section>
+  );
+}
+
+/* ===================== Execution System ===================== */
+
+function ExecutionSystem() {
+  return (
+    <section
+      id="framework"
+      className="px-6 max-w-6xl mx-auto bg-white/80 backdrop-blur-xl rounded-3xl p-16 border border-neutral-200 shadow-lg"
+    >
+      <h2 className="text-3xl font-semibold text-center">
+        The LaunchCTO Execution Control System
+      </h2>
+
+      <div className="mt-14 grid md:grid-cols-2 gap-12">
+        {[
+          {
+            title: "Market Clarity Architecture",
+            desc: "ICP decomposition, value surface mapping, validation sequencing.",
+          },
+          {
+            title: "Technical Blueprint",
+            desc: "System boundary design, API topology, build vs buy logic.",
+          },
+          {
+            title: "Execution Sequencing Engine",
+            desc: "Sprint-level roadmap, dependency graph, hiring timing.",
+          },
+          {
+            title: "Capital Discipline Framework",
+            desc: "Burn modeling, milestone alignment, investor readiness.",
+          },
+        ].map((item, i) => (
+          <div key={i}>
+            <h3 className="font-semibold text-xl">{item.title}</h3>
+            <p className="mt-3 text-neutral-600">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ===================== Deliverables ===================== */
+
+function Deliverables() {
+  return (
+    <section className="px-6 max-w-5xl mx-auto text-center">
+      <h2 className="text-3xl font-semibold">
+        What You Walk Away With
+      </h2>
+
+      <div className="mt-12 grid md:grid-cols-2 gap-8">
+        {[
+          "Product Architecture Diagram",
+          "Execution Roadmap (Sprint Sequenced)",
+          "Cost Projection Model",
+          "Technical Hiring Blueprint",
+          "Investor-Ready BRD",
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="p-6 bg-white rounded-2xl border border-neutral-200 shadow-sm"
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ===================== Installation Model ===================== */
+
+function InstallationModel() {
+  return (
+    <section className="px-6 max-w-5xl mx-auto">
+      <h2 className="text-3xl font-semibold text-center">
+        Install Execution Structure In 14 Days
+      </h2>
+
+      <div className="mt-14 space-y-6">
+        {[
+          "Day 1–2 → Founder Intake",
+          "Day 3–5 → System Blueprint",
+          "Day 6–10 → Execution Sequencing",
+          "Day 11–14 → Capital Readiness Package",
+        ].map((step, i) => (
+          <div
+            key={i}
+            className="p-6 bg-gradient-to-r from-blue-50 to-violet-50 rounded-2xl border border-neutral-200"
+          >
+            {step}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ===================== Qualification ===================== */
+
+function Qualification() {
+  return (
+    <section className="px-6 max-w-5xl mx-auto">
+      <h2 className="text-3xl font-semibold text-center">
+        This Is For Founders Who
+      </h2>
+
+      <div className="mt-12 grid md:grid-cols-2 gap-10">
+        <div>
+          <ul className="space-y-4 text-neutral-700">
+            <li>• Are preparing to raise capital</li>
+            <li>• Are hiring engineers</li>
+            <li>• Need execution clarity before scaling</li>
+            <li>• Want architecture before acceleration</li>
+          </ul>
+        </div>
+
+        <div>
+          <ul className="space-y-4 text-neutral-400">
+            <li>• Not for hobby projects</li>
+            <li>• Not for “just exploring” ideas</li>
+            <li>• Not for outsourcing dev shops</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ===================== Final CTA ===================== */
+
+function FinalCTA() {
+  return (
+    <section className="px-6 text-center">
+      <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-3xl p-16 shadow-xl">
+        <h2 className="text-3xl font-semibold">
+          Ready To Replace Burn With Structure?
+        </h2>
+
+        <p className="mt-6 text-blue-100">
+          Install execution clarity before you scale team, scope, or capital.
+        </p>
+
+        <Link
+          href="/login"
+          className="mt-10 inline-block px-8 py-4 bg-white text-black rounded-full font-medium"
+        >
+          Start Structured Execution →
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/* ===================== Footer ===================== */
+
+function Footer() {
+  return (
+    <footer className="py-16 text-center text-neutral-500 text-sm">
+      © {new Date().getFullYear()} LaunchCTO · Structured Execution Partner
+    </footer>
   );
 }
