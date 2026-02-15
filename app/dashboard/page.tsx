@@ -1,46 +1,40 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServer } from "@/lib/supabase-server";
 
-export default async function DashboardRoot() {
+export default async function DashboardPage() {
   const supabase = await createSupabaseServer();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect("/login");
+  if (!user) redirect("/auth/login");
 
-  /* Ensure profile exists */
-  await supabase.from("profiles").upsert({
-    id: user.id,
-    full_name: user.user_metadata?.full_name ?? "",
-  });
-
-  /* Check workspace */
-  const { data: existing } = await supabase
+  // check if workspace exists
+  const { data: workspace } = await supabase
     .from("workspaces")
     .select("*")
     .eq("owner_id", user.id)
-    .limit(1);
+    .single();
 
-  if (existing && existing.length > 0) {
-    redirect(`/dashboard/${existing[0].id}`);
+  if (workspace) {
+    redirect(`/dashboard/${workspace.id}`);
   }
 
-  /* Create workspace */
-  const { data: workspace, error } = await supabase
+  // create workspace once
+  const { data: newWorkspace, error } = await supabase
     .from("workspaces")
-    .insert([
-      {
-        name: "Founder Workspace",
-        owner_id: user.id,
-        stage: "intake",
-      },
-    ])
+    .insert({
+      name: "Founder Workspace",
+      owner_id: user.id,
+      stage: "intake",
+    })
     .select()
     .single();
 
-  if (error) throw new Error(error.message);
+  if (error || !newWorkspace) {
+    throw new Error("Workspace creation failed");
+  }
 
-  redirect(`/dashboard/${workspace.id}`);
+  redirect(`/dashboard/${newWorkspace.id}`);
 }
